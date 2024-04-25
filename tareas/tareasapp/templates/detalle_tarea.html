@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>{{tarea.tarea_titulo}}</h2>
+
+{{error}}
+
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>
+        Actualizar
+    </button>
+</form>
+{% endblock %}

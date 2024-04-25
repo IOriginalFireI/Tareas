@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form_user}}
+    <input type="submit" value="Crear"><a href="{% url 'ingresar' %}"><input type="button" value="Ingresar"></a>
+</form>
+{% if messages %}
+
+{% for message in messages %}
+{% if message.tags %} {{ message }} {% endif %}
+{% endfor %}
+
+{% endif %}
+{% endblock %}

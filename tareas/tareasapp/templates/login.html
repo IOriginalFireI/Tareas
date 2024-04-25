@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{{errors}}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{login_form}}
+    <input type="submit" value="Ingresar">
+</form>
+
+
+{% endblock %}

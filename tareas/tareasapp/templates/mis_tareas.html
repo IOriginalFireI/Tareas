@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+
+
+
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{tareas_form}}
+    <input type="submit" value="Crear">
+</form>
+{{tarea_guardada}}
+<form method="POST" action="{% url 'salir' %}">
+    {% csrf_token %}
+    <input type="hidden">
+    <button type="submit">Salir</button>
+</form>
+
+{% if tareas_form.errors %}
+<div style="color: red;">
+    {% for field, errors in tareas_form.errors.items %}
+    {% for error in errors %}
+    <p>{{ error }}</p>
+    {% endfor %}
+    {% endfor %}
+</div>
+{% endif %}
+
+<h1>MIS TAREAS</h1>
+
+
+{% for tarea in tareas %}
+
+<h3><a href="{% url 'detalle_tarea' tarea.id %}">{{tarea.tarea_titulo}}</a></h3>
+<p>{{tarea.tarea_descripcion}}</p>
+<form action="{% url 'eliminar_tarea' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="tarea_id" value="{{ tarea.id }}">
+    <button type="submit">Terminar</button>
+</form>
+
+{% endfor %}
+
+
+
+
+{% endblock %}
